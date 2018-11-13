@@ -20,8 +20,21 @@ console.log('Connected');
 });
 
 
-
 //about mysql
+connection.query("select * from superhero",function(error,rows,fields){
+if(!!error)
+{
+console.log("error...table not found!!");
+}
+else
+{
+console.log("successful!!");
+console.log(rows);
+}
+});
+
+
+
 app.get('/saviours/:id',function(req,resp){
 connection.query("select * from superhero where id = ?",[req.params.id],function(error,rows,fields){
 if(!!error)
@@ -50,7 +63,7 @@ console.log("error...table not found!!");
 else
 {
 console.log("deleted successfully!!!");
-resp.send("Employee with id: "+ req.params.id+ " deleted successfully!!");
+resp.send("Superhero with id: "+ req.params.id+ " deleted successfully!!");
 }
 });
 })
